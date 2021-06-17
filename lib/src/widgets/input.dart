@@ -131,9 +131,9 @@ class _InputState extends State<Input> {
               child: Container(
                 padding: EdgeInsets.fromLTRB(
                   24 + _query.padding.left,
-                  20,
+                  10,
                   24 + _query.padding.right,
-                  20 + _query.viewInsets.bottom + _query.padding.bottom,
+                  10 + _query.viewInsets.bottom + _query.padding.bottom,
                 ),
                 child: Row(
                   children: [
@@ -141,7 +141,7 @@ class _InputState extends State<Input> {
                     Expanded(
                       child: TextField(
                         controller: _textController,
-                        decoration: InputDecoration.collapsed(
+                        decoration: InputDecoration(
                           hintStyle: InheritedChatTheme.of(context)
                               .theme
                               .inputTextStyle
@@ -153,6 +153,11 @@ class _InputState extends State<Input> {
                               ),
                           hintText:
                               InheritedL10n.of(context).l10n.inputPlaceholder,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          fillColor: Colors.transparent,
                         ),
                         focusNode: _inputFocusNode,
                         keyboardType: TextInputType.multiline,
