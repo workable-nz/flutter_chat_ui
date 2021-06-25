@@ -154,10 +154,22 @@ class _InputState extends State<Input> {
                           hintText:
                               InheritedL10n.of(context).l10n.inputPlaceholder,
                           contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
+                            horizontal: 18,
+                            vertical: 6,
                           ),
-                          fillColor: Colors.transparent,
+                          fillColor: Colors.grey.shade200,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(26.0),
+                            borderSide: BorderSide(color: Colors.transparent),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(26.0),
+                            borderSide: BorderSide(color: Colors.transparent),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(26.0),
+                            borderSide: BorderSide(color: Colors.transparent),
+                          ),
                         ),
                         focusNode: _inputFocusNode,
                         keyboardType: TextInputType.multiline,
