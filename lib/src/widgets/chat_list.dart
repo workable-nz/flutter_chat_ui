@@ -8,12 +8,15 @@ class ChatList extends StatefulWidget {
   /// Creates a chat list widget
   const ChatList({
     Key? key,
+    this.headerWidget,
     this.isLastPage,
     required this.itemBuilder,
     required this.items,
     this.onEndReached,
     this.onEndReachedThreshold,
   }) : super(key: key);
+
+  final Widget? headerWidget;
 
   /// Used for pagination (infinite scroll) together with [onEndReached].
   /// When true, indicates that there are no more pages to load and
@@ -219,6 +222,11 @@ class _ChatListState extends State<ChatList>
               ),
             ),
           ),
+          if (widget.headerWidget != null)
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: widget.headerWidget,
+            ),
         ],
       ),
     );

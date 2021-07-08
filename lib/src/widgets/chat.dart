@@ -24,6 +24,7 @@ class Chat extends StatefulWidget {
     this.buildCustomMessage,
     this.dateLocale,
     this.disableImageGallery,
+    this.headerWidget,
     this.isAttachmentUploading,
     this.isLastPage,
     this.l10n = const ChatL10nEn(),
@@ -35,6 +36,7 @@ class Chat extends StatefulWidget {
     this.onMessageTap,
     this.onPreviewDataFetched,
     required this.onSendPressed,
+    this.placeholderWidget,
     this.showUserAvatars = false,
     this.showUserNames = false,
     this.theme = const DefaultChatTheme(),
@@ -50,6 +52,8 @@ class Chat extends StatefulWidget {
 
   /// Disable automatic image preview on tap.
   final bool? disableImageGallery;
+
+  final Widget? headerWidget;
 
   /// See [Input.isAttachmentUploading]
   final bool? isAttachmentUploading;
@@ -86,6 +90,8 @@ class Chat extends StatefulWidget {
 
   /// See [Input.onSendPressed]
   final void Function(types.PartialText) onSendPressed;
+
+  final Widget? placeholderWidget;
 
   /// See [Message.showUserAvatars]
   final bool showUserAvatars;
@@ -288,23 +294,25 @@ class _ChatState extends State<Chat> {
                       Flexible(
                         child: widget.messages.isEmpty
                             ? SizedBox.expand(
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 24,
-                                  ),
-                                  child: Text(
-                                    widget.l10n.emptyChatPlaceholder,
-                                    style: widget
-                                        .theme.emptyChatPlaceholderTextStyle,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
+                                child: widget.placeholderWidget ??
+                                    Container(
+                                      alignment: Alignment.center,
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                      ),
+                                      child: Text(
+                                        widget.l10n.emptyChatPlaceholder,
+                                        style: widget.theme
+                                            .emptyChatPlaceholderTextStyle,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                               )
                             : GestureDetector(
                                 onTap: () => FocusManager.instance.primaryFocus
                                     ?.unfocus(),
                                 child: ChatList(
+                                  headerWidget: widget.headerWidget,
                                   isLastPage: widget.isLastPage,
                                   itemBuilder: (item, index) =>
                                       _buildMessage(item),
