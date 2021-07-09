@@ -132,7 +132,7 @@ class _InputState extends State<Input> {
                 padding: EdgeInsets.fromLTRB(
                   24 + _query.padding.left,
                   10,
-                  24 + _query.padding.right,
+                  12 + _query.padding.right,
                   10 + _query.viewInsets.bottom + _query.padding.bottom,
                 ),
                 child: Row(
